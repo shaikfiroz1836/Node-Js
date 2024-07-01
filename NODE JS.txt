@@ -1,0 +1,31 @@
+NODE JS
+
+1)To work on both Frontend and Backend in JavaScript they introduced Node js(Backend Applications).
+2)Node js is used to build Backend Applications.
+3)Express is a node js Framework.
+4)If we install node js we get two node and npm(node package manager).
+5)To use node js we need to know javascript ES6 features like CALLBACK and ()=>{}.
+
+ASYNCHRONOS & NON-BLOCKING:
+1)Multiple request at a time.
+  a)CALLBACK
+  b)PROMISE
+  c)ASYNC&AWAIT
+
+example: 
+        setInterval(()=>{console.log("Every 2 sec")},2000)
+
+SYNCHRONOUS:
+1)one request at a time.
+2)Blocks others request.
+
+NODE JS
+1)node - JavaScript runtime environment.
+2)npm - Utility command.
+
+INBUILT MODULES:
+1)OS
+2)JS
+3)PATH
+4)HTTP
+5)URL
