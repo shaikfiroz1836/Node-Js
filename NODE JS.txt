@@ -1,4 +1,5 @@
-NODE JS
+                                                                          NODE JS
+
 
 1)To work on both Frontend and Backend in JavaScript they introduced Node js(Backend Applications).
 2)Node js is used to build Backend Applications.
@@ -29,3 +30,26 @@ INBUILT MODULES:
 3)PATH
 4)HTTP
 5)URL
+
+1)3rd pary modules available in npmjs.com - js dependency
+2)npm install MySQL
+3)npm install nodemon.
+
+MODULE:
+A group of files is called MOdule.
+
+FS:
+1)used to run files like .txt or .pdf files.
+
+Read File:
+1)readFile
+2)readFileSync.
+                ex-Es6:
+                    read.js:
+                        const fs = require('fs')
+                        let data = (fs.readFileSync('data.txt','utf-8'))
+                        console.log(data)
+           
+                   data.txt:
+                        Hello Mowa Kalki 2898 Ad movie chusava?
+
