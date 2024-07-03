@@ -54,3 +54,19 @@ Read File:
                         Hello Mowa Kalki 2898 Ad movie chusava?
 PATH Module:
 1)Construct the file path.
+
+      PathEx:
+            const path = require('path')
+            const fs = require('fs')
+            let data = fs.readFileSync(path.join(__dirname,"Emp","data.txt"),'utf-8')
+            console.log(data)
+      data.txt:
+            you will not find anything because i have taken the data.txt from FsEs2 file.
+
+Read&Write:
+          readwritesync.js:
+                        const fs = require('fs')
+                        let data = fs.readFileSync('emp.txt','utf-8') - Encoding Format
+                        fs.writeFileSync('data.txt',data,'utf-8') - if file is not there it is going to create a new file.
+                        console.log(data)
+
