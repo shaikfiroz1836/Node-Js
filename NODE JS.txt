@@ -70,3 +70,12 @@ Read&Write:
                         fs.writeFileSync('data.txt',data,'utf-8') - if file is not there it is going to create a new file.
                         console.log(data)
 
+Read&Write - Path:
+          readwritesync2.js:
+                         const fs = require('fs');
+                         const path = require('path');
+                         let data = fs.readFileSync(path.join('C:/Users/DELL/Desktop/Programming/Node js/Read&Write', 'data.txt'), 'utf-8');
+                         fs.writeFileSync(path.join(__dirname, 'Hyd.txt'), data, 'utf-8');
+                         console.log(data);
+                   Hyd.txt:
+                         The four pillars around Charminar represent the four caliphs. These pillars or minars are 48.7 meters high. These are four stories,                       with each floor divided by intricately carved rings that surround it. On the top floor of Chaminar there is a mosque which is believed to be the oldest mosque of Hyderabad city.
