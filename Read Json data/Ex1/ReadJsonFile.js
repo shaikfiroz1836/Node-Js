@@ -19,7 +19,7 @@ fs.readFile('users.json','utf-8',(err,data)=>{
    console.log(typeof users)
 
    for( user of users){
-    console.log(user.id)
+    console.log(user)
    }
 })
 
