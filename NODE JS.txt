@@ -79,3 +79,19 @@ Read&Write - Path:
                          console.log(data);
                    Hyd.txt:
                          The four pillars around Charminar represent the four caliphs. These pillars or minars are 48.7 meters high. These are four stories,                       with each floor divided by intricately carved rings that surround it. On the top floor of Chaminar there is a mosque which is believed to be the oldest mosque of Hyderabad city.
+
+
+Read JSON data:
+             const fs=require('fs')
+             const { json } = require('stream/consumers')
+             fs.readFile('users.json','utf-8',(err,data)=>{
+              if(err) throw err 
+              console.log(typeof data)
+              let users = JSON.parse(data)
+              console.log(typeof users)
+
+              for( user of users){
+              console.log(user)
+              }
+            })
+
