@@ -1,4 +1,4 @@
-                                                                          NODE JS
+                                                            NODE JS
 
 
 1)To work on both Frontend and Backend in JavaScript they introduced Node js(Backend Applications).
