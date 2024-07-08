@@ -8,6 +8,16 @@ let server = http.createServer((req,res)=>{
         console.log(req.url)
     })
 
+    fs.readFile('Home.html','utf-8',(err,data)=>{
+        if(err) throw err
+        res.end(data)
+    })
+
+    fs.readFile('About.html','utf-8',(err,data)=>{
+        if(err) throw err
+        res.end(data)
+    })
+
     
 })
 
