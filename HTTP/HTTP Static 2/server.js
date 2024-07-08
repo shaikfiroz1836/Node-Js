@@ -3,19 +3,19 @@ const path = require('path')
 const http = require('http')
 
 let server = http.createServer((req,res)=>{
-    if(req.url === '/' || req.url === 'index.html'){
+    if(req.url === '/' || req.url === '/index'){
         fs.readFile(path.join(process.cwd(),'Web','index.html'),'utf-8',(err,data)=>{
             if(err) throw err
             res.end(data)
         })
     }
-    else if(req.url === '/home.html'){
+    else if(req.url === '/home'){
         fs.readFile(path.join(process.cwd(),'Web','home.html'),'utf-8',(err,data)=>{
             if(err) throw err
             res.end(data)
         }
     )}
-    else if(req.url === '/about.html'){
+    else if(req.url === '/about'){
         fs.readFile(path.join(process.cwd(),'Web','about.html'),'utf-8',(err,data)=>{
             if(err) throw err
             res.end(data)
