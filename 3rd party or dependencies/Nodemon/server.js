@@ -13,5 +13,5 @@ let server = http.createServer((req,res)=>{
 })
 server.listen(port,host_name,(err)=>{
     if(err) throw err
-    console.log(`Server is running on http://${host_name} and ${port}`)
+    console.log(`Server is running on http://${host_name}:${port}`)
 })
