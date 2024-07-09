@@ -9,7 +9,24 @@ let port = process.env.PORT
 let host_name = process.env.HOST_NAME
 
 let server = http.createServer((req,res)=>{
-    res.end("<h1>Siva Anna Topu</h1>")
+    if(req.url === '/' || req.url === '/index'){
+        fs.readFile((path.join(process.cwd(),'web','/index.html')),'utf-8',(err,data)=>{
+            if(err) throw err
+            res.end(data)
+        })
+    }
+    else if(req.url === '/about'){
+        fs.readFile((path.join(process.cwd(),'web','/about.html')),'utf-8',(err,data)=>{
+            if(err) throw err
+            res.end(data)
+        })
+    }
+    else if(req.url === '/contact'){
+        fs.readFile((path.join(process.cwd(),'web','/contact.html')),'utf-8',(err,data)=>{
+            if(err) throw err
+            res.end(data)
+        })
+    }
 })
 
 server.listen(port,host_name,(err)=>{
