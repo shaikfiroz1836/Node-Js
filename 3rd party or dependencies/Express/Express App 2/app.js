@@ -9,7 +9,7 @@ dotenv.config({path: './config/.env'})
 let port = process.env.PORT
 let host_name = process.env.HOST_NAME
 
-app.get('/',(req,res)=>{
+app.get('/index',(req,res)=>{
     res.sendFile(path.join(process.cwd(),"web",'index.html'))
 })
 app.get('/about',(req,res)=>{
