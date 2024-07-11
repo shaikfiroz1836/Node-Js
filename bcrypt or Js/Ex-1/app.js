@@ -1,10 +1,14 @@
 const express = require('express')
 const path = require('path')
+const morgan = require('morgan')
 const dotenv = require('dotenv')
+const chalk = require('chalk')
 
 let app = express()
 
 dotenv.config({path: './config/.env'})
+
+app.use(morgan('combined'))
 
 let port = process.env.PORT
 let host_name = process.env.HOST_NAME
@@ -23,5 +27,5 @@ app.get('/contact',(req,res)=>{
 })
 app.listen(port,host_name,(err)=>{
     if(err) throw err
-    console.log(`Server is running on http://${host_name}:${port}`)
+    console.log(chalk.bgBlue(`Server is running on http://${host_name}:${port}`))
 })
