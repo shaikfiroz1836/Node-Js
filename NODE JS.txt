@@ -283,3 +283,41 @@ R -   Read   -  GET
 U -   Update -  PUT
 D -   Delete -  DELETE
 
+
+
+
+Example - 1:
+const express = require('express')
+const path = require('path')
+const dotenv = require('dotenv')
+
+let app = express()
+
+dotenv.config({path: './config/.env'})
+
+let port = process.env.PORT
+let host_name = process.env.HOST_NAME
+
+app.get('/index',(req,res)=>{
+    res.sendFile(path.join(process.cwd(),"web",'index.html'))
+})
+app.get('/about',(req,res)=>{
+    res.sendFile(path.join(process.cwd(),"web",'about.html'))
+})
+app.get('/contact',(req,res)=>{
+    res.sendFile(path.join(process.cwd(),"web",'contact.html'))
+})
+app.listen(port,host_name,(err)=>{
+    if(err) throw err
+    console.log(`Server is running on http://${host_name}:${port}`)
+})
+
+
+
+
+bcrypt/Js:
+1)npm init -y
+2)npm i express dotenv chalk morgon
+3)update package.json
+4)create app.js
+
