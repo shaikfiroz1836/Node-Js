@@ -32,5 +32,5 @@ app.get('/contact',(req,res)=>{
 })
 app.listen(port,host_name,(err)=>{
     if(err) throw err
-    console.log(chalk.bgBlue(`Server is running on http://${host_name}:${port}`))
+    console.log(chalk.bgMagenta(`Server is running on http://${host_name}:${port}`))
 })
