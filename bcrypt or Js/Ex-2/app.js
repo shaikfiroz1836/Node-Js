@@ -20,3 +20,10 @@ console.log(new_cc)
 
 user = {...user,cc:new_cc,password:new_password}
 console.log(user)
+
+let flag = bcrypt.compareSync('Prostack123',user.password)
+if(flag){
+    console.log("Login Success")
+}else{
+    console.log("Login Failed")
+}
