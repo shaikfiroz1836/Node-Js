@@ -1,8 +1,13 @@
-const express = require('express')
-const path = require('path')
-const morgan = require('morgan')
-const dotenv = require('dotenv')
-const chalk = require('chalk')
+// const express = require('express')
+// const path = require('path')
+// const morgan = require('morgan')
+// const dotenv = require('dotenv')
+
+import express from 'express'
+import path from 'path'
+import morgan from 'morgan'
+import dotenv from 'dotenv'
+import chalk from 'chalk'
 
 let app = express()
 
