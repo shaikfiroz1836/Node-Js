@@ -1,36 +1,29 @@
-// const express = require('express')
-// const path = require('path')
-// const morgan = require('morgan')
-// const dotenv = require('dotenv')
+import bcrypt from'bcrypt'
 
-import express from 'express'
-import path from 'path'
-import morgan from 'morgan'
-import dotenv from 'dotenv'
-import chalk from 'chalk'
+let user = {
+    name:'Rahul',
+    email:'Rahul123@gmail.com',
+    cc:'1234 1234 1234 1111',
+    cvv:'121',
+    password:'Prostack123'
+}
 
-let app = express()
+console.log(user)
 
-dotenv.config({path: './config/.env'})
+let salt = bcrypt.genSaltSync(10)
 
-app.use(morgan('combined'))
+let new_cc = bcrypt.hashSync(user.cc,salt)
+let new_password = bcrypt.hashSync(user.password,salt)
 
-let port = process.env.PORT
-let host_name = process.env.HOST_NAME
+console.log(user.cc)
+console.log(new_cc)
 
-app.get('/',(req,res)=>{
-    res.sendFile(path.join(process.cwd(),"web",'index.html'))
-})
-app.get('/index',(req,res)=>{
-    res.sendFile(path.join(process.cwd(),"web",'index.html'))
-})
-app.get('/about',(req,res)=>{
-    res.sendFile(path.join(process.cwd(),"web",'about.html'))
-})
-app.get('/contact',(req,res)=>{
-    res.sendFile(path.join(process.cwd(),"web",'contact.html'))
-})
-app.listen(port,host_name,(err)=>{
-    if(err) throw err
-    console.log(chalk.bgMagenta(`Server is running on http://${host_name}:${port}`))
-})
+user = {...user,cc:new_cc,password:new_password}
+console.log(user)
+
+let flag = bcrypt.compareSync('Prostack123',user.password)
+if(flag){
+    console.log("Login Success")
+}else{
+    console.log("Login Failed")
+}
