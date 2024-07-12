@@ -8,6 +8,8 @@ let user = {
     password:'Prostack123'
 }
 
+console.log(user)
+
 let salt = bcrypt.genSaltSync(10)
 
 let new_cc = bcrypt.hashSync(user.cc,salt)
