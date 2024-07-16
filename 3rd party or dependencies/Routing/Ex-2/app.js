@@ -13,12 +13,13 @@ let app = express()
 
 app.use(morgan('tiny'))
 
-app.get('/emp',(req,res)=>{
+app.get('/',(req,res)=>{
     res.json({"msg":"Root Request"})
 })
 
 
-app.use('emp',empRouter)
+
+app.use('/emp',empRouter)
 
 
 app.listen(port,host_name,(err)=>{

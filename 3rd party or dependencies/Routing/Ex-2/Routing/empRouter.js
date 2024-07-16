@@ -20,7 +20,7 @@ router.delete('/delete/:id',(req,res)=>{
 let saveEmployees=(employees)=>{}
 let getEmployees=()=>{
     let employees = fs.readFileSync('data.json','utf-8')
-    return Json.parse(employees);
+    return JSON.parse(employees);
 }
 
 export default router;
