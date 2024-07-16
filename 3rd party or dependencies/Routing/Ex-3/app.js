@@ -13,17 +13,14 @@ let host_name = process.env.HOST_NAME
 
 let app = express()
 
-app.use(morgan('tiny'))
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+
+app.use(morgan('dev'))
 
 app.get('/',(req,res)=>{
     res.json({"msg":"Root Request"})
 })
-
-app.post('/',(req,res)=>{
-    res.json({"msg":"POST Request"})
-})
-
-
 
 app.use('/emp',empRouter)
 
