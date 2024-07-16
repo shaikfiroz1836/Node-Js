@@ -1,31 +1,29 @@
 import express from 'express'
-import empRouter from './Routing/empRouter.js'
+import dotenv from 'dotenv'
 import morgan from 'morgan'
 import chalk from 'chalk'
-import dotenv from 'dotenv'
+import empRouter from './Routing/empRouter.js'
+//create express app 
+let app = express();
 
-dotenv.config({path:'./config/.env'})
-
-let port = process.env.PORT
-let host_name = process.env.HOST_NAME
-
-// app.use(bodyParser.urlencoded({ extended: true }))
-
-let app = express()
-
-app.use(express.json())
-app.use(express.urlencoded({extended:true}))
+//to read form data/post man data - enable express json
+app.use(express.json());
 
 app.use(morgan('dev'))
 
-app.get('/',(req,res)=>{
-    res.json({"msg":"Root Request"})
+dotenv.config({path:"./config/.env"})
+
+let port = process.env.PORT 
+let hostname = process.env.HOST_NAME
+
+//create root request 
+app.get("/",(req,resp)=>{
+    resp.json({"msg":"Root Request"})
 })
 
-app.use('/emp',empRouter)
-
-
-app.listen(port,host_name,(err)=>{
-    if(err) throw err
-    console.log(chalk.bgBlue(`Server is running on port http://${host_name}:${port}`))
+app.use("/emp",empRouter);
+//create and listen server -app
+app.listen(port,hostname,(err)=>{
+    if(err) throw err 
+    console.log(chalk.bgBlue(`Server Running http://${hostname}:${port}/`))
 })
