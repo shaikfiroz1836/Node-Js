@@ -14,7 +14,7 @@ router.post("/create",async(req,resp)=>{
     let employees=await getEmployees();
 
     let flag =employees.find((emp)=>{
-        return emp.eid == emp_Data.eid
+        return emp.eid === emp_Data.eid
     })
     console.log("Flag Value....",flag)
     if(flag){
