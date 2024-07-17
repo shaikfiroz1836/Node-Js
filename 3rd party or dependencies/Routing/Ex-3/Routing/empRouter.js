@@ -14,7 +14,7 @@ router.post("/create",async(req,resp)=>{
     let employees=await getEmployees();
 
     let flag =employees.find((emp)=>{
-        return emp.eid === emp_Data.eid
+        return emp.eid == emp_Data.eid
     })
     console.log("Flag Value....",flag)
     if(flag){
@@ -37,7 +37,19 @@ router.get("/read",async(req,resp)=>{
     resp.status(200).json(employees);
 })
 router.put("/update/:id",(req,resp)=>{})
-router.delete("/delete/:id",(req,resp)=>{})
+router.delete("/delete/:id",async(req,resp)=>{
+    let eid = req.params.id
+    console.log(eid)
+    let employees=await getEmployees()
+
+    let flag = employees.find((emp)=>{
+        return emp.eid == eid
+    })
+    if(!flag){
+        return resp.json({"Error":"Employee Not Found!"})
+
+    }
+})
 
 let saveEmployees=(employees)=>{
     fs.writeFileSync('data.json',JSON.stringify(employees))
