@@ -37,18 +37,25 @@ router.get("/read",async(req,resp)=>{
     resp.status(200).json(employees);
 })
 router.put("/update/:id",(req,resp)=>{})
-router.delete("/delete/:id",async(req,resp)=>{
-    let eid = req.params.id
-    console.log(eid)
-    let employees=await getEmployees()
+router.delete("/delete/:id",async (req,resp)=>{
+    //how to read url data - using req.params.id
+    let emp_Id = req.params.id;
+    console.log(emp_Id)
+    let employees= await getEmployees()
+    console.log(employees.length)
 
-    let flag = employees.find((emp)=>{
-        return emp.eid == eid
+    let flag=employees.find((emp)=>{
+        return emp.eid == emp_Id;
     })
+    console.log(flag)
     if(!flag){
-        return resp.json({"Error":"Employee Not Found!"})
-
+        return resp.status(401).json({"msg":"Employee Not Exist!"})
     }
+    let remaining_Employees=employees.filter((emp)=>{
+        return emp.eid !=emp_Id;
+    })
+    saveEmployees(remaining_Employees)
+    return resp.status(200).json({"msg":"Employee record Deleted Succesfully!"})
 })
 
 let saveEmployees=(employees)=>{
