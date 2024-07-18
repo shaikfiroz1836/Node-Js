@@ -14,14 +14,14 @@ router.post("/create",async(req,resp)=>{
     let employees=await getEmployees();
 
     let flag =employees.find((emp)=>{
-        return emp.eid === emp_Data.eid
+        return emp.id === emp_Data
     })
     console.log("Flag Value....",flag)
     if(flag){
         return resp.json({"Error":"Employee Alread exist!"})
     }
     employees.push(emp_Data)
-    await saveEmployees(employees);
+     saveEmployees(employees);
     return resp.status(200).json({"msg":"new Employee Object created successfully!"})
 })
 /*
@@ -48,13 +48,13 @@ router.put("/update/:id",async(req,resp)=>{
     let emp_Obj = req.body;
     let employees = await getEmployees()
     let emp=employees.find((emp)=>{
-        return emp.eid==emp_Id
+        return emp.id==emp_Id
     })
     if(!emp){
         return resp.status(401).json({"msg":"Employee Not Exists"})
     }
     let remaining_Employees=employees.filter((emp)=>{
-        return emp.eid !=emp_Id;
+        return emp.id !=emp_Id;
     })
     remaining_Employees.unshift(emp_Obj)
     saveEmployees(remaining_Employees)
