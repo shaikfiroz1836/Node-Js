@@ -15,6 +15,14 @@ router.get('/read',async(req,res)=>{
 router.post('/create',(req,res)=>{
     let emp = req.body
     console.log(emp)
+    let Employee = EmployeeModel.findOne({eid:emp.eid})
+    console.log(Employee)
+    if(Employee){
+        return res.status(200).json({"msg":"Employee Already Exists"})
+    }
+    employee = new EmployeeModel(emp)
+    employee.save()
+    
 })
 
 
