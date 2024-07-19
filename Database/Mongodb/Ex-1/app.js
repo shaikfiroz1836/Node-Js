@@ -14,7 +14,12 @@ let host_name = process.env.HOST_NAME
 let db_url = process.env.MONGO_LOCAL_URL
 
 app.use('/emp',empRouter)
+
 app.use(morgan('dev'))
+
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+
 app.get('/',(req,res)=>{
     res.status(200).json({"msg":"Root Request"})
 })
@@ -29,5 +34,5 @@ mongoose.connect(db_url,{})
 
 app.listen(port,host_name,(err)=>{
     if(err) throw err
-    console.log(chalk.bgBlue(`Server is running on http://${host_name}:${port}/`))
+    console.log(chalk.bgGreen(`Server is running on http://${host_name}:${port}/`))
 })

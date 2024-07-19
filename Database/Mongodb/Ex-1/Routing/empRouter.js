@@ -13,7 +13,8 @@ router.get('/read',async(req,res)=>{
 })
 
 router.post('/create',(req,res)=>{
-    
+    let emp = req.body
+    console.log(emp)
 })
 
 
