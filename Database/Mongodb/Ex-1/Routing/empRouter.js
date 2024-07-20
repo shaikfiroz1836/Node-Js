@@ -30,7 +30,7 @@ router.get("/read", async (req,resp)=>{
 router.post("/create",async (req,resp)=>{
     try{
         let emp = req.body;
-        let Employee=await EmployeeModel.findOne({id:emp.id})
+        let Employee=await EmployeeModel.findOne({eid:emp.eid})
         console.log(Employee)
         if(Employee){
             return resp.status(401).json({"msg":"Employee already exits"})
@@ -45,4 +45,29 @@ router.post("/create",async (req,resp)=>{
     }
        
 })
+/*
+    Usage: update new employee
+    URL:http://127.0.0.1:8080/emp/update/1234
+    Method:PUT
+    Req Fields:eid,ename,esal
+*/
+router.put("/update/:id",async(req,resp)=>{
+    try{
+            let emp_Id = req.params.id;
+            console.log(emp_Id)
+            let emp=req.body;
+            console.log(emp)
+            let Emplooye=await EmployeeModel.findOne({"eid":emp_Id})
+            console.log(Emplooye)
+            if(!Emplooye){
+                    return resp.status(401).json({"msg":"Employee Not Exits"})
+            }
+            await EmployeeModel.findByIdAndUpdate(Emplooye._id,{$set:{ename:emp.ename,esal:emp.esal}});
+            return resp.status(200).json({"msg":"Employee Updated Successfully"})
+    }
+    catch(err){
+        return resp.status(401).json({"err":err.message})
+    }
+})
+
 export default router;
