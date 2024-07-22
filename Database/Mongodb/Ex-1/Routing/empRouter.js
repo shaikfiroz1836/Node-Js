@@ -69,5 +69,27 @@ router.put("/update/:id",async(req,resp)=>{
         return resp.status(401).json({"err":err.message})
     }
 })
-
+/*
+    usage:Delete employee Data
+    URL:http://127.0.0.1:8080/emp/delete/10
+    Method:DELETE
+    Access Tupe:Public
+    Req Fields: None
+*/
+router.delete("/delete/:id",async(req,resp)=>{
+    try{
+      let emp_Id = req.params.id;
+      console.log(emp_Id)
+      let Employee  =await EmployeeModel.findOne({eid:emp_Id})
+      console.log(Employee)
+      if(!Employee){
+        return resp.status(401).json({"msg":"Employee Not Exists"})
+      }
+      await EmployeeModel.findByIdAndDelete(Employee._id);
+      return resp.status(200).json({"msg":"Employee Document Deleted Sucessfully"})
+    }
+    catch(err){
+        return resp.status(401).json({"err":err.message})
+    }
+})
 export default router;
