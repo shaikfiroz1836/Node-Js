@@ -24,11 +24,11 @@ router.get("/",(req,resp)=>{
         return resp.status(401).json({"msg":err.message})
     }
  });
-/*
+
 router.get();
 router.post();
 router.put();
-router.delete(); */
+router.delete();
 
 export default router;
 
