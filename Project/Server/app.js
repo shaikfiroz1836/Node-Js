@@ -14,7 +14,7 @@ dotenv.config({path:"./config/.env"})
 
 let port = process.env.PORT
 let host = process.env.HOST_NAME
-let db_url = process.env.MONGODB_URL_LOCAL
+let db_url = process.env.MONGO_DB_LOCAL_URL
 
 app.get('/',(req,res)=>{
     res.send("<h1>Server - Root Request</h1>")
