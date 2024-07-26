@@ -7,10 +7,11 @@ import cors from 'cors'
 import productRouter from './routing/productRouter.js'
 let app = express()
 
+app.use(express.json())
 app.use(morgan('dev'))
 app.use(cors())
 
-dotenv.config({path:"./config/.env"})
+dotenv.config({path:"./config/dev.env"})
 
 let port = process.env.PORT
 let host = process.env.HOST_NAME
