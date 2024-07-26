@@ -1,36 +1,35 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import morgan from 'morgan';
-import chalk from 'chalk';
-import mongoose from 'mongoose';
-import productRouter from './routing/productRouter.js';
+import express from 'express'
+import dotenv from 'dotenv'
+import chalk from 'chalk'
+import mongoose from 'mongoose'
+import morgan from 'morgan'
+import cors from 'cors'
+import productRouter from './routing/productRouter.js'
+let app = express()
 
-dotenv.config({ path: './config/.env' });
+app.use(morgan('dev'))
+app.use(cors())
 
-const app = express();
-app.use(morgan('dev'));
+dotenv.config({path:"./config/.env"})
 
-const port = process.env.PORT
-const host = process.env.HOST_NAME
-const db_url = process.env.MONGO_DB_LOCAL_URL;
+let port = process.env.PORT
+let host = process.env.HOST_NAME
+let db_url = process.env.MONGODB_URL_LOCAL
 
-app.use('/product', productRouter);
-
-app.get("/", (req, res) => {
-    res.send("Server - Root Request");
-});
-
-mongoose.connect(db_url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+app.get('/',(req,res)=>{
+    res.send("<h1>Server - Root Request</h1>")
 })
-.then(() => {
-    console.log("MongoDB Connection Successful!");
-    app.listen(port, host, () => {
-        console.log(chalk.green(`Server is running at http://${host}:${port}/`));
-    });
-})
-.catch((err) => {
-    console.error("MongoDB Connection Error: ", err);
-    process.exit(1);
-});
+
+app.use('/product',productRouter)
+
+mongoose.connect(db_url)
+    .then(()=>{
+        console.log("Database Connected Successfully.....")
+        app.listen(port,host,(err)=>{
+            if(err) throw err
+            console.log(chalk.green(`server is running on http://${host}:${port}/`))
+        })
+    })
+    .catch((err)=>{
+        process.exit(1);
+    })
