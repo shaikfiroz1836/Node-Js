@@ -19,7 +19,6 @@ const CreateProduct = () => {
     })
   }
   let sumbitHandler = (event)=>{
-    console.log("called")
     event.preventDefault();
     let url = 'http://localhost:6786/product/create'
     Axios.post(url,product)

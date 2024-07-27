@@ -18,6 +18,16 @@ const UpdateProduct = () => {
         setProduct({...product,[event.target.name]:event.target.value})
     }
 
+    let updateImage = (event)=>{
+        let imageFile = event.target.files[0];
+        let reader = new FileReader();
+        reader.readAsDataURL(imageFile);
+        reader.addEventListener('load',()=>{
+            if(reader.result){
+                setProduct({...product,image:reader.result})
+            }
+        })
+      }
     useEffect(()=>{
         console.log(p_Id)
         let url=`http://127.0.0.1:6786/product/update/${p_Id.id}`
@@ -29,7 +39,8 @@ const UpdateProduct = () => {
     },[]);
 let submitHandler = (event)=>{
         event.preventDefault();
-        let url=`http://127.0.0.1:6785/products/update/${p_Id.id}`
+        console.log("called")
+        let url=`http://localhost:6786/product/update/${p_Id.id}`
         Axios.put(url,product)
         .then((resp)=>{
             console.log(resp.data)
@@ -61,7 +72,7 @@ let submitHandler = (event)=>{
                <input name="name" onChange={updateInput}  value={product.name} placeholder='Product Name' type="text" className='form-control' />
            </div>
            <div className='form-group'>
-               <input name="image"  type="file" className='form-control' />
+               <input name="image"onChange={updateImage}  type="file" className='form-control' />
            </div>
            <div className='form-group'>
                <input name="price" onChange={updateInput} value={product.price} placeholder='Price' type="number" className='form-control' />

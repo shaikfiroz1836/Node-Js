@@ -60,51 +60,50 @@ router.post('/create',async(req,resp)=>{
            process.exit(1)
 }
  })
- router.put('/update/:id',async(req,res)=>{
-    try{
-        let P_id=req.params.id
-        let product=await Product.findById({id:P_id})
-        if(!product){
-            return res.status(400).json({"msg":"Product not found"})
-        }
-        let P_Data = req.body
-        await Product.findByIdAndUpdate(P_id,{$Set:{
-            name:P_Data.name,
-            image:P_Data.image,
-            price:P_Data.price,
-            qty:P_Data.qty,
-            info:P_Data.info
-        }})
-    }
-    catch{
-        return res.status(401).json({"msg":"Error Occured while updating product"})
-    }
- });
- router.put('/:id',async(req,res)=>{
-    try{
-        let P_id=req.params.id
-        let product = Product.findById(P_id)
-        if(!product){
-            return res.status(400).json({"msg":"Product not found"})
-        }
-        product.update(req.body)
-        console.log("Product Updated Successfully...")
-    }
-    catch{
-        return res.status(401).json({"msg":"Error Occured while updating product"})
-    }
- });
- router.delete('/delete/:id',async(req,res)=>{
-    try{
-        let id=req.params.id
-        let product=await Product.findByIdAndRemove(id)
-        if(product){
-            console.log("Product Deleted Succesfully...")
-        }
-    }
-    catch{
-        return res.status(401).json({"msg":"Error Occured while deleting product"})
-    }
- });
 
+
+router.put('/update/:id', async (req, res) => {
+    try {
+        
+        let P_id = req.params.id;
+        let product = await Product.findById(P_id);
+        
+        if (!product) {
+            return res.status(400).json({ "msg": "Product not found" });
+        }
+
+        let P_Data = req.body;
+        await Product.findByIdAndUpdate(P_id, {
+            $set: {
+                name: P_Data.name,
+                image: P_Data.image,
+                price: P_Data.price,
+                qty: P_Data.qty,
+                info: P_Data.info
+            }
+        });
+
+        return res.status(200).json({ "msg": "Product updated successfully" });
+    } catch (error) {
+        return res.status(500).json({ "msg": "Error occurred while updating product items", "error": error.message });
+    }
+});
+
+
+
+
+router.delete("/delete/:id", async(req,resp)=>{
+    try{    
+        let pId=req.params.id;
+        let product=await Product.findById(pId)
+        if(!product){
+            return resp.status(401).json({"msg":"Product Not Exists"})
+        }
+        await Product.findByIdAndDelete(pId)
+        return resp.status(200).json({"msg":"Product Deleted Successfully"})
+    }
+    catch(err){
+        return resp.status(401).json({'err':err.message})
+    }
+});
 export default router;
