@@ -9,6 +9,7 @@ let app = express()
 
 app.use(cors())
 app.use(morgan('dev'))
+app.use(express.json())
 
 dotenv.config({path:'./config/dev.env'})
 let port = process.env.PORT 
