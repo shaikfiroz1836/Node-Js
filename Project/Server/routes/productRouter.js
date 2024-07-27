@@ -60,15 +60,21 @@ router.post('/create',async(req,resp)=>{
            process.exit(1)
 }
  })
- router.put('/update/:name',async(req,res)=>{
+ router.put('/update/:id',async(req,res)=>{
     try{
-        let Pname=req.params.name
-        let body=req.body
-        let product=await Product.findOneAndUpdate({name:Pname})
-        if(product){
-            product.update(body)
-            console.log("Product Updated Succesfully...")
+        let P_id=req.params.id
+        let product=await Product.findById({id:P_id})
+        if(!product){
+            return res.status(400).json({"msg":"Product not found"})
         }
+        let P_Data = req.body
+        await Product.findByIdAndUpdate(P_id,{$Set:{
+            name:P_Data.name,
+            image:P_Data.image,
+            price:P_Data.price,
+            qty:P_Data.qty,
+            info:P_Data.info
+        }})
     }
     catch{
         return res.status(401).json({"msg":"Error Occured while updating product"})

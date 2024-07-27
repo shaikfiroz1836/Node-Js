@@ -20,7 +20,7 @@ const UpdateProduct = () => {
 
     useEffect(()=>{
         console.log(p_Id)
-        let url=`http://127.0.0.1:6786/product/${p_Id.id}`
+        let url=`http://127.0.0.1:6786/product/update/${p_Id.id}`
         Axios.get(url)
         .then((resp)=>{
            setProduct(resp.data)
@@ -29,7 +29,7 @@ const UpdateProduct = () => {
     },[]);
 let submitHandler = (event)=>{
         event.preventDefault();
-        let url=`http://127.0.0.1:6785/products/${p_Id.id}`
+        let url=`http://127.0.0.1:6785/products/update/${p_Id.id}`
         Axios.put(url,product)
         .then((resp)=>{
             console.log(resp.data)
