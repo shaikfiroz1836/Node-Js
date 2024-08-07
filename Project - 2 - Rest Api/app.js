@@ -13,7 +13,7 @@ let port = process.env.PORT
 let host = process.env.HOST_NAME
 
 app.get('/',(req,res)=>{
-    res.send('<h1>Good Morning</h1>')
+    res.send('<h1>Server - Root Request</h1>')
 })
 
 app.listen(port,host,(err)=>{
